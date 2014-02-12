@@ -8,17 +8,20 @@ A GulpJS starter template with basic tasks for development and production.
 ### Features
 
 * Simple HTML5 boilerplate
-* Separated production and development environments
-* Using SCSS
+* Separated development and build environments
 * Livereloading development server with automatic building of SCSS files
 * Bower component management
+* SCSS compiling
+* CSS autoprefixing and minifying
 * Automatic image compressing
+* JavaScript compressing with uglify
 
 ### Usage
 
 #### Install
 
 Make sure you have [NodeJS](http://nodejs.org/) installed.
+Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin.
 
 Run:
 ```sh
