@@ -22,7 +22,7 @@ Make sure you have [NodeJS](http://nodejs.org/) installed.
 
 Run:
 ```sh
-git clone https://github.com/3bola/gulp-starter.git && cd ukko && npm install
+git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm install
 ```
 
 #### Running the development server
