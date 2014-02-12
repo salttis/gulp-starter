@@ -25,6 +25,8 @@ Run:
 git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm install
 ```
 
+Then just open your browser and go to [http://localhost:8080/](http://localhost:8080/)!
+
 #### Running the development server
 
 Run:
