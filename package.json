@@ -1,0 +1,23 @@
+{
+  "name": "gulp-starter",
+  "version": "1.0.0",
+  "author": "Juri Saltbacka",
+  "scripts": {
+    "install": "bower install && gulp"
+  },
+  "devDependencies": {
+    "gulp-livereload": "~1.1.1",
+    "tiny-lr": "0.0.5",
+    "gulp": "~3.5.2",
+    "gulp-util": "~2.2.14",
+    "gulp-bower": "0.0.2",
+    "express": "~3.4.8",
+    "bower": "~1.2.8",
+    "gulp-sass": "~0.7.0",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-clean": "~0.2.4",
+    "gulp-uglify": "~0.2.1"
+  }
+}

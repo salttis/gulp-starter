@@ -1,0 +1,7 @@
+{
+  "name": "gulp-starter",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~2.1.0"
+  }
+}
