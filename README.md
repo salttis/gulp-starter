@@ -20,8 +20,8 @@ A GulpJS starter template with basic tasks for development and production.
 
 #### Install
 
-Make sure you have [NodeJS](http://nodejs.org/) installed.
-Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin.
+* Make sure you have [NodeJS](http://nodejs.org/) installed.
+* Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin.
 
 Run:
 ```sh
