@@ -20,7 +20,6 @@ var gulp         = require('gulp')
 var Config = {
   port: 8080,
   livereload_port: 35729,
-  open_browser: true,
   images: {
     compression: 3,
     progressive: true,
