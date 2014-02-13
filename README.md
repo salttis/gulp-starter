@@ -1,6 +1,6 @@
 # Gulp Starter
 
-A GulpJS starter template with basic tasks for development and production.
+A gulp.js starter template with basic tasks for development and production.
 
 * Source: [http://github.com/3bola/gulp-starter](http://github.com/3bola/gulp-starter)
 * Issues: [https://github.com/3bola/gulp-starter/issues](https://github.com/3bola/gulp-starter/issues)
