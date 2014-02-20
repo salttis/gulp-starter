@@ -82,7 +82,7 @@ gulp.task('watch', function(){
 gulp.task('build', function(){
 
   // Clean
-  gulp.src(paths.build.root + '/**/*', { read: false })
+  gulp.src([ paths.build.root + '/**/*', paths.build.root + '/**/**/*' ], { read: false })
     .pipe(clean());
 
   // Scripts
