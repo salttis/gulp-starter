@@ -79,11 +79,12 @@ gulp.task('watch', function(){
   })
 });
 
-gulp.task('build', function(){
-
-  // Clean
-  gulp.src([ paths.build.root + '/**/*', paths.build.root + '/**/**/*' ], { read: false })
+gulp.task('clean', function(){
+  gulp.src([ paths.build.root + '/**/*', paths.build.root + '/*', paths.build.root ], { read: false })
     .pipe(clean());
+});
+
+gulp.task('build', ['clean'], function(){
 
   // Scripts
   gulp.src(paths.app.js + '/**/*.js')
