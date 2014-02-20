@@ -80,7 +80,7 @@ gulp.task('watch', function(){
 });
 
 gulp.task('clean', function(){
-  gulp.src([ paths.build.root + '/**/*', paths.build.root + '/*', paths.build.root ], { read: false })
+  gulp.src([ paths.build.root + '/**/*', paths.build.root + '/*' ], { read: false })
     .pipe(clean());
 });
 
