@@ -119,7 +119,7 @@ gulp.task('livereload', function(){
 });
 
 gulp.task('watch', function(){
-  gulp.watch(paths.app.scss + '/**/*.scss', ['styles']);
+  gulp.watch(paths.app.scss + '/**/*.scss', ['styles:dev']);
   gulp.watch([
       paths.app.images + '/**/*.png',
       paths.app.images + '/**/*.jpg',
