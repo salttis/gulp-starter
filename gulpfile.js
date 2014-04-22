@@ -91,6 +91,11 @@ gulp.task('libraries', function(){
     .pipe(gulp.dest(paths.build.lib));
 });
 
+gulp.task('assets', function(){
+  return gulp.src(paths.app.root + '/assets/**/*')
+    .pipe(gulp.dest(paths.build.root + '/assets'));
+});
+
 gulp.task('html', function(){
   return gulp.src([
       paths.app.root + '/**/*.html',
