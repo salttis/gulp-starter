@@ -51,7 +51,7 @@ var paths = {
 // Tasks
 
 gulp.task('styles:dev', function(){
-  return gulp.src(paths.app.scss + '/**/*.scss')
+  return gulp.src(paths.app.scss + '/index.scss')
     .pipe(sass({
       errLogToConsole: true
     }))
@@ -60,7 +60,7 @@ gulp.task('styles:dev', function(){
 });
 
 gulp.task('styles:build', function(){
-  return gulp.src(paths.app.scss + '/**/*.scss')
+  return gulp.src(paths.app.scss + '/index.scss')
     .pipe(sass({
       errLogToConsole: true
     }))
