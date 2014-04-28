@@ -1,24 +1,28 @@
 {
   "name": "gulp-starter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Juri Saltbacka",
   "scripts": {
     "install": "bower install && gulp"
   },
   "devDependencies": {
-    "gulp-livereload": "latest",
-    "tiny-lr": "latest",
-    "gulp": "latest",
-    "gulp-util": "latest",
-    "gulp-bower": "latest",
-    "express": "latest",
-    "bower": "latest",
-    "gulp-sass": "latest",
-    "gulp-autoprefixer": "latest",
-    "gulp-imagemin": "latest",
-    "gulp-minify-css": "latest",
-    "gulp-uglify": "latest",
-    "gulp-rimraf": "latest",
-    "gulp-cache": "latest"
+    "bower": "*",
+    "express": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-bower": "*",
+    "gulp-cache": "*",
+    "gulp-filter": "*",
+    "gulp-imagemin": "*",
+    "gulp-livereload": "*",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-rimraf": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*",
+    "gulp-useref": "*",
+    "gulp-util": "*",
+    "opn": "*",
+    "tiny-lr": "*"
   }
 }

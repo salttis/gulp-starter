@@ -8,13 +8,13 @@ A gulp.js starter template with basic tasks for development and production.
 ### Features
 
 * Simple HTML5 boilerplate
-* Separated development and build environments
+* Separated development environment
 * Livereloading development server with automatic building of SCSS files
 * Bower component management
-* SCSS compiling
-* CSS autoprefixing and minifying
 * Automatic image compressing
-* JavaScript compressing with uglify
+* SCSS compiling
+* CSS autoprefixing, combining and minifying
+* JavaScript combining and compressing with uglify
 
 ### Usage
 
@@ -28,7 +28,7 @@ Run:
 git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm install
 ```
 
-Then just open your browser and go to [http://localhost:8080/](http://localhost:8080/)!
+Then just wait for your browser to open [http://localhost:8080/](http://localhost:8080/)!
 
 #### Running the development server
 
