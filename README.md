@@ -1,6 +1,6 @@
 # Gulp Starter
 
-<img align="right" src="https://raw.github.com/3bola/gulp-starter/master/app/img/pipboy.jpg" hspace="80" vspace="10" width="320">
+<img align="right" src="https://raw.github.com/3bola/gulp-starter/master/app/img/pipboy.jpg" hspace="20" vspace="10" width="320">
 
 A gulp.js starter template with basic tasks for development and production.
 
