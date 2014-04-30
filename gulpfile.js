@@ -1,6 +1,6 @@
 'use strict';
-
-var gulp         = require('gulp')
+var argv         = require('minimist')(process.argv.slice(2))
+  , gulp         = require('gulp')
   , cache        = require('gulp-cache')
   , gutil        = require('gulp-util')
   , sass         = require('gulp-sass')
@@ -150,5 +150,5 @@ gulp.task('clean', function(){
 
 gulp.task('build', ['clean', 'templates', 'styles', 'html', 'images']);
 gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
-  opn('http://localhost:' + Config.port);
+  if(argv.o) opn('http://localhost:' + Config.port);
 });

@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "author": "Juri Saltbacka",
   "scripts": {
-    "install": "bower install && gulp"
+    "install": "bower install && gulp -o"
   },
   "devDependencies": {
     "bower": "*",
@@ -26,6 +26,7 @@
     "gulp-uglify": "*",
     "gulp-useref": "*",
     "gulp-util": "*",
+    "minimist": "0.0.8",
     "opn": "*",
     "tiny-lr": "*"
   }
