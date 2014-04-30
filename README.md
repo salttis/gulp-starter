@@ -17,6 +17,7 @@ A gulp.js starter template with basic tasks for development and production.
 * SCSS compiling
 * CSS autoprefixing, combining and minifying
 * JavaScript combining and compressing with uglify
+* Handlebars templates
 
 ### Usage
 
