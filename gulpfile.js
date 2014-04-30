@@ -13,6 +13,10 @@ var gulp         = require('gulp')
   , clean        = require('gulp-rimraf')
   , useref       = require('gulp-useref')
   , filter       = require('gulp-filter')
+  , concat       = require('gulp-concat')
+  , defineModule = require('gulp-define-module')
+  , declare      = require('gulp-declare')
+  , handlebars   = require('gulp-handlebars')
   , express      = require('express')
   , tinylr       = require('tiny-lr')
   , path         = require('path')
@@ -37,7 +41,8 @@ var Config = {
       scss:   './app/scss',
       css:    './app/css',
       images: './app/img',
-      lib:    './app/lib'
+      lib:    './app/lib',
+      tmpl:   './app/tmpl',
     },
     dist: {
       root:   './dist',
@@ -74,6 +79,17 @@ gulp.task('images', function(){
 gulp.task('assets', function(){
   return gulp.src(Config.paths.app.root + '/assets/**/*')
     .pipe(gulp.dest(Config.paths.dist.root + '/assets'));
+});
+
+gulp.task('templates', function(){
+  return gulp.src(Config.paths.app.tmpl + '/**/*')
+    .pipe(handlebars())
+    .pipe(defineModule('plain'))
+    .pipe(declare({
+      namespace: 'tmpl'
+    }))
+    .pipe(concat('templates.js'))
+    .pipe(gulp.dest(Config.paths.app.js + '/'));
 });
 
 gulp.task('html', function(){
@@ -113,6 +129,7 @@ gulp.task('livereload', function(){
 
 gulp.task('watch', function(){
   gulp.watch(Config.paths.app.scss + '/**/*.scss', ['styles']);
+  gulp.watch(Config.paths.app.tmpl + '/**/*.hbs', ['templates']);
   gulp.watch([
       Config.paths.app.images + '/**/*.png',
       Config.paths.app.images + '/**/*.jpg',
@@ -131,7 +148,7 @@ gulp.task('clean', function(){
     .pipe(clean());
 });
 
-gulp.task('build', ['clean', 'styles', 'html', 'images']);
-gulp.task('default', ['server', 'livereload', 'styles', 'watch'], function(){
+gulp.task('build', ['clean', 'templates', 'styles', 'html', 'images']);
+gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
   opn('http://localhost:' + Config.port);
 });
