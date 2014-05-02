@@ -49,7 +49,7 @@ gulp build
 
 #### Templates
 
-Template files are loaded automatically to global variable `tmpl`.
+Template files are loaded automatically to global object `tmpl`.
 For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListView` function.
 
 
