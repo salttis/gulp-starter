@@ -47,6 +47,12 @@ Run:
 gulp build
 ```
 
+#### Templates
+
+Template files are loaded automatically to global variable `tmpl`.
+For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListView` function.
+
+
 ### License
 
 #### The MIT License (MIT)
