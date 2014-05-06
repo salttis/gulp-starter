@@ -143,9 +143,8 @@ gulp.task('watch', function(){
   })
 });
 
-gulp.task('clean', function(){
-  return gulp.src([ Config.paths.dist.root + '/' ], { read: false })
-    .pipe(clean());
+gulp.task('clean', function(cb){
+  clean(Config.paths.dist.root, cb);
 });
 
 gulp.task('build', ['clean', 'templates', 'styles', 'html', 'images']);
