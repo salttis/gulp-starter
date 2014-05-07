@@ -145,6 +145,7 @@ gulp.task('html', ['html:clean'], function(){
     .pipe(gulp.dest(Config.paths.dist.root));
 })
 
+// Extra folders
 gulp.task('extra:clean', function(){
   for(var dir in Config.paths.app.extra) {
     gulp.src(Config.paths.dist.extra[dir], { read: false })
