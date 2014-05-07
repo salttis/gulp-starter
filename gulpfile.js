@@ -4,6 +4,7 @@ var argv         = require('minimist')(process.argv.slice(2))
   , cache        = require('gulp-cache')
   , gutil        = require('gulp-util')
   , gulpif       = require('gulp-if')
+  , gulpifelse   = require('gulp-if-else')
   , sass         = require('gulp-sass')
   , refresh      = require('gulp-livereload')
   , prefix       = require('gulp-autoprefixer')
@@ -26,8 +27,6 @@ var argv         = require('minimist')(process.argv.slice(2))
   , lr;
 
 // Configuration
-
-console.log(argv.cache);
 
 var Config = {
   port: 8080,
@@ -74,12 +73,13 @@ gulp.task('styles', function(){
 });
 
 // Fonts
-gulp.task('fonts:clean', function(cb){
-  clean(Config.paths.dist.fonts, cb);
+gulp.task('fonts:clean', function(){
+  return gulp.src(Config.paths.dist.fonts + '/**/*', { read: false })
+    .pipe(clean());
 });
 gulp.task('fonts', ['fonts:clean'], function(){
   return gulp.src(Config.paths.app.fonts + '/**/*')
-    .pipe(gulp.dest(Config.paths.dist.fonts + ''));
+    .pipe(gulp.dest(Config.paths.dist.fonts + '/'));
 });
 
 // Images
@@ -89,8 +89,13 @@ gulp.task('images:clean', function(){
 });
 gulp.task('images', ['images:clean'], function(){
   return gulp.src(Config.paths.app.images + '/**/*')
-    .pipe(gulpif(Config.cache, cache(imagemin(Config.imagemin))))
-    .pipe(gulpif(!Config.cache, imagemin(Config.imagemin)))
+    .pipe(gulpifelse(
+      Config.cache, function(){
+        return cache(imagemin(Config.imagemin)) // if
+      }, function(){
+        return imagemin(Config.imagemin) // else
+      }
+    ))
     .pipe(gulp.dest(Config.paths.dist.images + '/'));
 });
 
