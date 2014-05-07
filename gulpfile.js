@@ -165,7 +165,7 @@ gulp.task('watch', function(){
   })
 });
 
-gulp.task('build', ['templates', 'styles', 'html', 'images']);
+gulp.task('build', ['templates', 'styles', 'fonts', 'html', 'images']);
 gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
   if(argv.o) opn('http://localhost:' + Config.port);
 });
