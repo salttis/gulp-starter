@@ -47,6 +47,10 @@ var Config = {
       fonts:  './app/fonts',
       lib:    './app/lib',
       tmpl:   './app/tmpl',
+      extra: [
+        //'./app/foo/**/*',
+        //'./app/bar/**/*'
+      ]
     },
     dist: {
       root:   './dist',
@@ -54,7 +58,11 @@ var Config = {
       css:    './dist/css',
       images: './dist/img',
       fonts:  './dist/fonts',
-      lib:    './dist/lib'
+      lib:    './dist/lib',
+      extra: [
+        //'./dist/foo/',
+        //'./dist/bar/'
+      ]
     }
   }
 }
@@ -137,6 +145,19 @@ gulp.task('html', ['html:clean'], function(){
     .pipe(gulp.dest(Config.paths.dist.root));
 })
 
+gulp.task('extra:clean', function(){
+  for(var dir in Config.paths.app.extra) {
+    gulp.src(Config.paths.dist.extra[dir], { read: false })
+      .pipe(clean());
+  }
+})
+gulp.task('extra', ['extra:clean'], function(){
+  for(var dir in Config.paths.app.extra) {
+    gulp.src(Config.paths.app.extra[dir])
+      .pipe(gulp.dest(Config.paths.dist.extra[dir]));
+  }
+});
+
 // Server
 gulp.task('server', function(){
   var server = express()
@@ -170,7 +191,7 @@ gulp.task('watch', function(){
   })
 });
 
-gulp.task('build', ['templates', 'styles', 'fonts', 'html', 'images']);
+gulp.task('build', ['templates', 'styles', 'fonts', 'extra', 'html', 'images']);
 gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
   if(argv.o) opn('http://localhost:' + Config.port);
 });
