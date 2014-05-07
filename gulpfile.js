@@ -3,6 +3,7 @@ var argv         = require('minimist')(process.argv.slice(2))
   , gulp         = require('gulp')
   , cache        = require('gulp-cache')
   , gutil        = require('gulp-util')
+  , gulpif       = require('gulp-if')
   , sass         = require('gulp-sass')
   , refresh      = require('gulp-livereload')
   , prefix       = require('gulp-autoprefixer')
@@ -26,11 +27,14 @@ var argv         = require('minimist')(process.argv.slice(2))
 
 // Configuration
 
+console.log(argv.cache);
+
 var Config = {
   port: 8080,
   livereload_port: 35729,
-  images: {
-    compression: 3,
+  cache: (typeof argv.cache !== 'undefined' ? !!argv.cache : true),
+  imagemin: {
+    optimizationLevel: 3,
     progressive: true,
     interlaced: true
   },
@@ -41,6 +45,7 @@ var Config = {
       scss:   './app/scss',
       css:    './app/css',
       images: './app/img',
+      fonts:  './app/fonts',
       lib:    './app/lib',
       tmpl:   './app/tmpl',
     },
@@ -49,13 +54,16 @@ var Config = {
       js:     './dist/js',
       css:    './dist/css',
       images: './dist/img',
+      fonts:  './dist/fonts',
       lib:    './dist/lib'
     }
   }
 }
 
 // Tasks
+// =====
 
+// Styles
 gulp.task('styles', function(){
   return gulp.src(Config.paths.app.scss + '/index.scss')
     .pipe(sass({
@@ -65,22 +73,28 @@ gulp.task('styles', function(){
     .pipe(gulp.dest(Config.paths.app.css));
 });
 
-gulp.task('images', function(){
-  return gulp.src([
-      Config.paths.app.images + '/**/*.png',
-      Config.paths.app.images + '/**/*.jpg',
-      Config.paths.app.images + '/**/*.jpeg',
-      Config.paths.app.images + '/**/*.gif'
-    ])
-    .pipe(cache(imagemin({ optimizationLevel: Config.images.compression, progressive: Config.images.progressive, interlaced: Config.images.interlaced })))
+// Fonts
+gulp.task('fonts:clean', function(cb){
+  clean(Config.paths.dist.fonts, cb);
+});
+gulp.task('fonts', ['fonts:clean'], function(){
+  return gulp.src(Config.paths.app.fonts + '/**/*')
+    .pipe(gulp.dest(Config.paths.dist.fonts + ''));
+});
+
+// Images
+gulp.task('images:clean', function(){
+  return gulp.src(Config.paths.dist.images + '/**/*', { read: false })
+    .pipe(gulpif(!Config.cache, clean()));
+});
+gulp.task('images', ['images:clean'], function(){
+  return gulp.src(Config.paths.app.images + '/**/*')
+    .pipe(gulpif(Config.cache, cache(imagemin(Config.imagemin))))
+    .pipe(gulpif(!Config.cache, imagemin(Config.imagemin)))
     .pipe(gulp.dest(Config.paths.dist.images + '/'));
 });
 
-gulp.task('assets', function(){
-  return gulp.src(Config.paths.app.root + '/assets/**/*')
-    .pipe(gulp.dest(Config.paths.dist.root + '/assets'));
-});
-
+// Templates
 gulp.task('templates', function(){
   return gulp.src(Config.paths.app.tmpl + '/**/*')
     .pipe(handlebars())
@@ -92,7 +106,12 @@ gulp.task('templates', function(){
     .pipe(gulp.dest(Config.paths.app.js + '/'));
 });
 
-gulp.task('html', function(){
+// HTML, JavaScript, CSS
+gulp.task('html:clean', function(){
+  return gulp.src([Config.paths.dist.root + '/**/*.html', Config.paths.dist.root + '/**/*.css', Config.paths.dist.root + '/**/*.js'], { read: false })
+    .pipe(clean());
+});
+gulp.task('html', ['html:clean'], function(){
   var jsFilter  = filter('**/*.js')
     , cssFilter = filter('**/*.css')
     , htmlFilter = filter('**/*.html');
@@ -113,13 +132,15 @@ gulp.task('html', function(){
     .pipe(gulp.dest(Config.paths.dist.root));
 })
 
+// Server
 gulp.task('server', function(){
   var server = express()
     .use(express.static(path.resolve(Config.paths.app.root)))
     .listen(Config.port);
-  gutil.log('Server listening on port %s', Config.port);
+  gutil.log('Server listening on port ' + Config.port);
 });
 
+// LiveReload
 gulp.task('livereload', function(){
   lr = tinylr();
   lr.listen(Config.livereload_port, function(err) {
@@ -127,6 +148,7 @@ gulp.task('livereload', function(){
   })
 });
 
+// Watches
 gulp.task('watch', function(){
   gulp.watch(Config.paths.app.scss + '/**/*.scss', ['styles']);
   gulp.watch(Config.paths.app.tmpl + '/**/*.hbs', ['templates']);
@@ -143,11 +165,7 @@ gulp.task('watch', function(){
   })
 });
 
-gulp.task('clean', function(cb){
-  clean(Config.paths.dist.root, cb);
-});
-
-gulp.task('build', ['clean', 'templates', 'styles', 'html', 'images']);
+gulp.task('build', ['templates', 'styles', 'html', 'images']);
 gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
   if(argv.o) opn('http://localhost:' + Config.port);
 });

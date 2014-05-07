@@ -1,7 +1,14 @@
 {
   "name": "gulp-starter",
-  "version": "1.1.0",
-  "author": "Juri Saltbacka",
+  "version": "1.2.0",
+  "author": {
+    "name": "Juri Saltbacka",
+    "email": "juri@3bola.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/3bola/gulp-starter.git"
+  },
   "scripts": {
     "install": "bower install && gulp -o"
   },
@@ -17,6 +24,7 @@
     "gulp-define-module": "^0.1.1",
     "gulp-filter": "*",
     "gulp-handlebars": "^2.1.0",
+    "gulp-if": "^1.1.0",
     "gulp-imagemin": "*",
     "gulp-livereload": "*",
     "gulp-minify-css": "*",

@@ -23,8 +23,8 @@ A gulp.js starter template with basic tasks for development and production.
 
 #### Install
 
-* Make sure you have [NodeJS](http://nodejs.org/) installed.
-* Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin.
+* Make sure you have latest [NodeJS](http://nodejs.org/) installed.
+* Install [Chrome LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) plugin. (Optional)
 
 Run:
 ```sh
@@ -33,16 +33,21 @@ git clone https://github.com/3bola/gulp-starter.git && cd gulp-starter && npm in
 
 Then just wait for your browser to open [http://localhost:8080/](http://localhost:8080/)!
 
-#### Running the development server
+#### Development server
 
-Run:
+To start the development server, run:
 ```sh
 gulp
 ```
 
-#### Building the application
+To open the URL in your browser at the same time, run:
+```sh
+gulp -o
+```
 
-Run:
+#### Building
+
+To build and compress the application to the `dist` folder, run:
 ```sh
 gulp build
 ```
@@ -52,6 +57,9 @@ gulp build
 Template files are loaded automatically to global object `tmpl`.
 For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListView` function.
 
+#### Image caching
+
+The build script automatically caches the compressed images. For this reason the `dist/img/` folder is not cleaned. If you wanto to clean the images folder and recache the images, run the build script with `gulp build --no-cache` command.
 
 ### License
 
@@ -76,5 +84,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/d3d546fd33d30403d8ccfb5934f8d4f0 "githalytics.com")](http://githalytics.com/3bola/gulp-starter)
