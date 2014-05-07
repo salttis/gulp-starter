@@ -147,10 +147,8 @@ gulp.task('html', ['html:clean'], function(){
 
 // Extra folders
 gulp.task('extra:clean', function(){
-  for(var dir in Config.paths.app.extra) {
-    gulp.src(Config.paths.dist.extra[dir], { read: false })
-      .pipe(clean());
-  }
+  gulp.src(Config.paths.dist.extra, { read: false })
+    .pipe(clean());
 })
 gulp.task('extra', ['extra:clean'], function(){
   for(var dir in Config.paths.app.extra) {
