@@ -2,6 +2,7 @@
 var argv         = require('minimist')(process.argv.slice(2))
   , gulp         = require('gulp')
   , cache        = require('gulp-cache')
+  , watch        = require('gulp-watch')
   , gutil        = require('gulp-util')
   , gulpif       = require('gulp-if')
   , gulpifelse   = require('gulp-if-else')
@@ -39,29 +40,29 @@ var Config = {
   },
   paths: {
     app:   {
-      root:   './app',
-      js:     './app/js',
-      scss:   './app/scss',
-      css:    './app/css',
-      images: './app/img',
-      fonts:  './app/fonts',
-      lib:    './app/lib',
-      tmpl:   './app/tmpl',
+      root:   'app',
+      js:     'app/js',
+      scss:   'app/scss',
+      css:    'app/css',
+      images: 'app/img',
+      fonts:  'app/fonts',
+      lib:    'app/lib',
+      tmpl:   'app/tmpl',
       extra: [
-        //'./app/foo/**/*',
-        //'./app/bar/**/*'
+        //'app/foo/**/*',
+        //'app/bar/**/*'
       ]
     },
     dist: {
-      root:   './dist',
-      js:     './dist/js',
-      css:    './dist/css',
-      images: './dist/img',
-      fonts:  './dist/fonts',
-      lib:    './dist/lib',
+      root:   'dist',
+      js:     'dist/js',
+      css:    'dist/css',
+      images: 'dist/img',
+      fonts:  'dist/fonts',
+      lib:    'dist/lib',
       extra: [
-        //'./dist/foo/',
-        //'./dist/bar/'
+        //'dist/foo/',
+        //'dist/bar/'
       ]
     }
   }
@@ -175,8 +176,12 @@ gulp.task('livereload', function(){
 
 // Watches
 gulp.task('watch', function(){
-  gulp.watch(Config.paths.app.scss + '/**/*.scss', ['styles']);
-  gulp.watch(Config.paths.app.tmpl + '/**/*.hbs', ['templates']);
+  watch({ glob: Config.paths.app.scss + '/**/*.scss' }, function(){
+    gulp.start('styles');
+  });
+  watch({ glob: Config.paths.app.tmpl + '/**/*.hbs' }, function(){
+    gulp.start('templates');
+  });
   gulp.watch([
       Config.paths.app.images + '/**/*.png',
       Config.paths.app.images + '/**/*.jpg',
