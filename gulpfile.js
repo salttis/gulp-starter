@@ -1,6 +1,7 @@
 'use strict';
 var argv         = require('minimist')(process.argv.slice(2))
   , gulp         = require('gulp')
+  , git          = require('gulp-git')
   , cache        = require('gulp-cache')
   , watch        = require('gulp-watch')
   , gutil        = require('gulp-util')
@@ -70,6 +71,18 @@ var Config = {
 
 // Tasks
 // =====
+
+// Bootstrapping
+gulp.task('bootstrap:orphan', git.checkout.bind(null, 'orphaned-temp-branch', {args: '-f --orphan '}));
+gulp.task('bootstrap:master', ['bootstrap:commit'], git.branch.bind(null, 'master', {args: '-M '}));
+gulp.task('bootstrap:commit', ['bootstrap:orphan'], function(){
+  return gulp.src('.')
+    .pipe(git.commit('Bootstrapped initial commit'));    
+});
+
+gulp.task('bootstrap', ['bootstrap:master'], function(){      
+     
+});
 
 // Styles
 gulp.task('styles', function(){

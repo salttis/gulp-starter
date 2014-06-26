@@ -10,7 +10,8 @@
     "url": "https://github.com/3bola/gulp-starter.git"
   },
   "scripts": {
-    "install": "bower install && gulp -o"
+    "install": "bower install",
+    "bootstrap": "npm install && gulp bootstrap"
   },
   "devDependencies": {
     "bower": "*",
@@ -38,6 +39,7 @@
     "gulp-watch": "^0.6.4",
     "minimist": "0.0.8",
     "opn": "*",
-    "tiny-lr": "*"
+    "tiny-lr": "*",
+    "gulp-git": "git://github.com/robrich/gulp-git#3117c5a24769bb11acc7ff6a582cbbc95f734016"
   }
 }
