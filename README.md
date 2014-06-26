@@ -65,6 +65,23 @@ The build script automatically caches the compressed images. For this reason the
 gulp build --no-cache
 ```
 
+### Bootstraping
+
+The bootstrap script will take current checkout you are located on (git) and turn it in to the initial commit the master branch. To completly detach from the orginal gulp-starter repository don't forget to change the origin and remove any additional branches you created.
+```sh
+gulp bootstrap
+```
+
+#### Setting a new origin
+```sh
+git remote set-url origin <your url here>
+```
+
+#### Remove all branches except master
+```sh
+git branch | grep -v "master" | xargs git branch -D 
+```
+
 #### Configuration
 
 You can find some useful options in the `gulpfile.js` file.
