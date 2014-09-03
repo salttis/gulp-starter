@@ -13,13 +13,13 @@ var argv         = require('minimist')(process.argv.slice(2))
   , minifyHtml   = require('gulp-minify-html')
   , imagemin     = require('gulp-imagemin')
   , uglify       = require('gulp-uglify')
-  , clean        = require('gulp-rimraf')
   , useref       = require('gulp-useref')
   , filter       = require('gulp-filter')
   , concat       = require('gulp-concat')
   , defineModule = require('gulp-define-module')
   , declare      = require('gulp-declare')
   , handlebars   = require('gulp-handlebars')
+  , del          = require('del')
   , express      = require('express')
   , path         = require('path')
   , opn          = require('opn')
@@ -80,9 +80,8 @@ gulp.task('styles', function(){
 });
 
 // Fonts
-gulp.task('fonts:clean', function(){
-  return gulp.src(Config.paths.dist.fonts + '/**/*', { read: false })
-    .pipe(clean());
+gulp.task('fonts:clean', function(next){
+  del(Config.paths.dist.fonts + '/**', next);
 });
 gulp.task('fonts', ['fonts:clean'], function(){
   return gulp.src(Config.paths.app.fonts + '/**/*')
@@ -90,9 +89,8 @@ gulp.task('fonts', ['fonts:clean'], function(){
 });
 
 // Images
-gulp.task('images:clean', function(){
-  return gulp.src(Config.paths.dist.images + '/**/*', { read: false })
-    .pipe(gulpif(!Config.cache, clean()));
+gulp.task('images:clean', function(next){
+  del(Config.paths.dist.images + '/**', next);
 });
 gulp.task('images', ['images:clean'], function(){
   return gulp.src(Config.paths.app.images + '/**/*')
@@ -119,24 +117,25 @@ gulp.task('templates', function(){
 });
 
 // HTML, JavaScript, CSS
-gulp.task('html:clean', function(){
-  return gulp.src([Config.paths.dist.root + '/**/*.html', Config.paths.dist.root + '/**/*.css', Config.paths.dist.root + '/**/*.js'], { read: false })
-    .pipe(clean());
+gulp.task('html:clean', function(next){
+  del([Config.paths.dist.root + '/**/*.html', Config.paths.dist.root + '/**/*.css', Config.paths.dist.root + '/**/*.js'], next);
 });
 gulp.task('html', ['html:clean'], function(){
   var jsFilter  = filter('**/*.js')
     , cssFilter = filter('**/*.css')
     , htmlFilter = filter('**/*.html');
 
-  return gulp.src(Config.paths.app.root + '/**/*.html')
-    .pipe(useref.assets())
+  var assets = useref.assets();
+
+  return gulp.src([Config.paths.app.root + '/**/*.html', '!' + Config.paths.app.lib + '/**/*'])
+    .pipe(assets)
     .pipe(jsFilter)
     .pipe(uglify())
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
     .pipe(minifyCss())
     .pipe(cssFilter.restore())
-    .pipe(useref.restore())
+    .pipe(assets.restore())
     .pipe(useref())
     .pipe(htmlFilter)
     .pipe(minifyHtml())
@@ -145,9 +144,8 @@ gulp.task('html', ['html:clean'], function(){
 })
 
 // Extra folders
-gulp.task('extra:clean', function(){
-  gulp.src(Config.paths.dist.extra, { read: false })
-    .pipe(clean());
+gulp.task('extra:clean', function(next){
+  del(Config.paths.dist.extra + '/**', next);
 })
 gulp.task('extra', ['extra:clean'], function(){
   for(var dir in Config.paths.app.extra) {
@@ -192,6 +190,7 @@ gulp.task('watch', function(){
   });
 });
 
+gulp.task('clean', ['fonts:clean', 'images:clean', 'html:clean', 'extra:clean']);
 gulp.task('build', ['templates', 'styles', 'fonts', 'extra', 'html', 'images']);
 gulp.task('default', ['server', 'livereload', 'templates', 'styles', 'watch'], function(){
   if(argv.o) opn('http://localhost:' + Config.port);
