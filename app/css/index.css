@@ -87,9 +87,6 @@ p {
 a:hover, a:active {
   outline: none; }
 
-
-
-
 strong {
   font-weight: bold; }
 
@@ -102,12 +99,8 @@ dfn {
 sup, sub {
   line-height: 0; }
 
-
-
-
 pre, code {
   white-space: pre; }
-
 
 pre {
   white-space: pre;
@@ -139,11 +132,6 @@ dd {
 table {
   width: 100%; }
 
-
-
-
-
-
 input[type="radio"] {
   vertical-align: text-bottom; }
 
@@ -161,15 +149,8 @@ label, input[type=button], input[type=submit], button {
 label {
   font-weight: bold; }
 
-
 legend {
   font-weight: bold; }
-
-
-
-
-
-
 
 html, body {
   height: 100%;

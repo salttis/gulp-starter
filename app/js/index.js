@@ -1,5 +1,5 @@
 $(function(){
 
-  $('#container').html(tmpl.template({ content: 'Good luck!' }));
+  $('#container').html(tmpl.template({ content: 'Good luck!!!!!' }));
 
 });

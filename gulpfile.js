@@ -7,7 +7,7 @@ var argv         = require('minimist')(process.argv.slice(2))
   , gulpif       = require('gulp-if')
   , gulpifelse   = require('gulp-if-else')
   , sass         = require('gulp-sass')
-  , refresh      = require('gulp-livereload')
+  , livereload   = require('gulp-livereload')
   , prefix       = require('gulp-autoprefixer')
   , minifyCss    = require('gulp-minify-css')
   , minifyHtml   = require('gulp-minify-html')
@@ -21,11 +21,9 @@ var argv         = require('minimist')(process.argv.slice(2))
   , declare      = require('gulp-declare')
   , handlebars   = require('gulp-handlebars')
   , express      = require('express')
-  , tinylr       = require('tiny-lr')
   , path         = require('path')
   , opn          = require('opn')
-  , info         = require('./package.json')
-  , lr;
+  , info         = require('./package.json');
 
 // Configuration
 
@@ -168,8 +166,7 @@ gulp.task('server', function(){
 
 // LiveReload
 gulp.task('livereload', function(){
-  lr = tinylr();
-  lr.listen(Config.livereload_port, function(err) {
+  livereload.listen(Config.livereload_port, function(err) {
     if(err) gutil.log('Livereload error:', err);
   })
 });
@@ -183,16 +180,16 @@ gulp.task('watch', function(){
     gulp.start('templates');
   });
   gulp.watch([
-      Config.paths.app.images + '/**/*.png',
-      Config.paths.app.images + '/**/*.jpg',
-      Config.paths.app.images + '/**/*.jpeg',
-      Config.paths.app.images + '/**/*.gif',
-      Config.paths.app.css + '/**/*.css',
-      Config.paths.app.js + '/**/*.js',
-      Config.paths.app.root + '/**/*.html'
-    ], function(evt){
-    refresh(lr).changed(evt.path);
-  })
+    Config.paths.app.images + '/**/*.png',
+    Config.paths.app.images + '/**/*.jpg',
+    Config.paths.app.images + '/**/*.jpeg',
+    Config.paths.app.images + '/**/*.gif',
+    Config.paths.app.css + '/**/*.css',
+    Config.paths.app.js + '/**/*.js',
+    Config.paths.app.root + '/**/*.html'
+  ], function(evt){
+    livereload.changed(evt.path);
+  });
 });
 
 gulp.task('build', ['templates', 'styles', 'fonts', 'extra', 'html', 'images']);
