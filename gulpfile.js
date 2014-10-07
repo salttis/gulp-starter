@@ -145,9 +145,15 @@ gulp.task('html', ['html:clean'], function(){
 
 // Extra folders
 gulp.task('extra:clean', function(next){
+  if(!Config.paths.dist.extra.length) {
+    return;
+  }
   del(Config.paths.dist.extra + '/**', next);
 })
 gulp.task('extra', ['extra:clean'], function(){
+  if(!Config.paths.app.extra.length || !Config.paths.dist.extra.length || Config.paths.app.extra.length != Config.paths.dist.extra.length) {
+    return;
+  }
   for(var dir in Config.paths.app.extra) {
     gulp.src(Config.paths.app.extra[dir])
       .pipe(gulp.dest(Config.paths.dist.extra[dir]));
