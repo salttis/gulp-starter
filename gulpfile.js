@@ -171,10 +171,10 @@ gulp.task('livereload', function(){
 
 // Watches
 gulp.task('watch', function(){
-  watch({ glob: Config.paths.app.scss + '/**/*.scss' }, function(){
+  watch(Config.paths.app.scss + '/**/*.scss', function(){
     gulp.start('styles');
   });
-  watch({ glob: Config.paths.app.tmpl + '/**/*.hbs' }, function(){
+  watch(Config.paths.app.tmpl + '/**/*.hbs', function(){
     gulp.start('templates');
   });
   gulp.watch([
