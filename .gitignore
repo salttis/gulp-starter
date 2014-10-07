@@ -4,5 +4,6 @@
 # App stuff
 .sass-cache
 npm-debug.log
+dist/
 node_modules/
 app/lib/
