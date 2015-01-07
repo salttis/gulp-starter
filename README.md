@@ -60,9 +60,9 @@ For example file `Main.ListView.hbs` would be accessible from `tmpl.Main.ListVie
 
 #### Image caching
 
-The build script automatically caches the compressed images. For this reason the `dist/img/` folder is not cleaned. If you wanto to clean the images folder and recache the images, run the build script with
+The build script does not automatically cache the compressed images. If you want to cache the images, run the build script with:
 ```sh
-gulp build --no-cache
+gulp build --cache
 ```
 
 #### Configuration

@@ -1,8 +1,8 @@
 {
   "name": "gulp-starter",
-  "version": "1.2.2",
   "dependencies": {
-    "jquery": "1.11.0",
-    "handlebars": "*"
+    "jquery": "<2.0.0",
+    "handlebars": "*",
+    "skeleton": "*"
   }
 }

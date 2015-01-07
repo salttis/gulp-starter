@@ -30,7 +30,7 @@ var argv         = require('minimist')(process.argv.slice(2))
 var Config = {
   port: 8080,
   livereload_port: 35729,
-  cache: (typeof argv.cache !== 'undefined' ? !!argv.cache : true),
+  cache: (typeof argv.cache !== 'undefined' ? !!argv.cache : false),
   imagemin: {
     optimizationLevel: 3,
     progressive: true,
@@ -194,6 +194,10 @@ gulp.task('watch', function(){
   ], function(evt){
     livereload.changed(evt.path);
   });
+});
+
+gulp.task('clear', function (done) {
+  return cache.clearAll(done);
 });
 
 gulp.task('clean', ['fonts:clean', 'images:clean', 'html:clean', 'extra:clean']);

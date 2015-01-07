@@ -1,14 +1,8 @@
-@import "_reset";
-@import "typography";
-
-html, body {
-  height: 100%;
-  background: white url("../img/pipboy.jpg") no-repeat 50% 50%;
-  background-size: 40%;
+.container {
+  text-align: center;
 }
 
-h1 {
-  padding-top: 40px;
-  text-align: center;
-  text-indent: 60px;
+img {
+  width: 33%;
+  height: auto;
 }
