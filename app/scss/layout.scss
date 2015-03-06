@@ -1,0 +1,19 @@
+h1 {
+  margin: 15rem 0 13rem;
+  text-align: center;
+}
+.jargon {
+  margin: 0 15%;
+}
+.example-grid {
+  margin: 6rem 0 4rem;
+  .column, .columns {
+    text-align: center;
+    background-color: $light;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    padding: 5px 0;
+    margin-bottom: 2rem;
+  }
+}

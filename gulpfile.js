@@ -51,16 +51,16 @@ var Config = {
         //'app/bar/**/*'
       ]
     },
-    dist: {
-      root:   'dist',
-      js:     'dist/js',
-      css:    'dist/css',
-      images: 'dist/img',
-      fonts:  'dist/fonts',
-      lib:    'dist/lib',
+    build: {
+      root:   'public',
+      js:     'public/js',
+      css:    'public/css',
+      images: 'public/img',
+      fonts:  'public/fonts',
+      lib:    'public/lib',
       extra: [
-        //'dist/foo/',
-        //'dist/bar/'
+        //'public/foo/',
+        //'public/bar/'
       ]
     }
   }
@@ -81,16 +81,16 @@ gulp.task('styles', function(){
 
 // Fonts
 gulp.task('fonts:clean', function(next){
-  del(Config.paths.dist.fonts + '/**', next);
+  del(Config.paths.build.fonts + '/**', next);
 });
 gulp.task('fonts', ['fonts:clean'], function(){
   return gulp.src(Config.paths.app.fonts + '/**/*')
-    .pipe(gulp.dest(Config.paths.dist.fonts + '/'));
+    .pipe(gulp.dest(Config.paths.build.fonts + '/'));
 });
 
 // Images
 gulp.task('images:clean', function(next){
-  del(Config.paths.dist.images + '/**', next);
+  del(Config.paths.build.images + '/**', next);
 });
 gulp.task('images', ['images:clean'], function(){
   return gulp.src(Config.paths.app.images + '/**/*')
@@ -101,7 +101,7 @@ gulp.task('images', ['images:clean'], function(){
         return imagemin(Config.imagemin) // else
       }
     ))
-    .pipe(gulp.dest(Config.paths.dist.images + '/'));
+    .pipe(gulp.dest(Config.paths.build.images + '/'));
 });
 
 // Templates
@@ -118,7 +118,7 @@ gulp.task('templates', function(){
 
 // HTML, JavaScript, CSS
 gulp.task('html:clean', function(next){
-  del([Config.paths.dist.root + '/**/*.html', Config.paths.dist.root + '/**/*.css', Config.paths.dist.root + '/**/*.js'], next);
+  del([Config.paths.build.root + '/**/*.html', Config.paths.build.root + '/**/*.css', Config.paths.build.root + '/**/*.js'], next);
 });
 gulp.task('html', ['html:clean'], function(){
   var jsFilter  = filter('**/*.js')
@@ -140,23 +140,23 @@ gulp.task('html', ['html:clean'], function(){
     .pipe(htmlFilter)
     .pipe(minifyHtml())
     .pipe(htmlFilter.restore())
-    .pipe(gulp.dest(Config.paths.dist.root));
+    .pipe(gulp.dest(Config.paths.build.root));
 })
 
 // Extra folders
 gulp.task('extra:clean', function(next){
-  if(!Config.paths.dist.extra.length) {
+  if(!Config.paths.build.extra.length) {
     return;
   }
-  del(Config.paths.dist.extra + '/**', next);
+  del(Config.paths.build.extra + '/**', next);
 })
 gulp.task('extra', ['extra:clean'], function(){
-  if(!Config.paths.app.extra.length || !Config.paths.dist.extra.length || Config.paths.app.extra.length != Config.paths.dist.extra.length) {
+  if(!Config.paths.app.extra.length || !Config.paths.build.extra.length || Config.paths.app.extra.length != Config.paths.build.extra.length) {
     return;
   }
   for(var dir in Config.paths.app.extra) {
     gulp.src(Config.paths.app.extra[dir])
-      .pipe(gulp.dest(Config.paths.dist.extra[dir]));
+      .pipe(gulp.dest(Config.paths.build.extra[dir]));
   }
 });
 

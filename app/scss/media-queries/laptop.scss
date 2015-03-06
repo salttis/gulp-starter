@@ -1,0 +1,7 @@
+@media (max-width: 1000px) {
+  body:after {
+    display: block;
+    content: 'laptop';
+    text-align: center;
+  }
+}

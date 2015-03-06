@@ -1,0 +1,7 @@
+@media (max-width: 750px) {
+  body:after {
+    display: block;
+    content: 'tablet';
+    text-align: center;
+  }
+}

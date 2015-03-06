@@ -1,0 +1,7 @@
+@media (max-width: 400px) {
+  body:after {
+    display: block;
+    content: 'mobile';
+    text-align: center;
+  }
+}

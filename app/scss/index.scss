@@ -1,8 +1,27 @@
-.container {
-  text-align: center;
-}
+// Variables
+@import "variables/colors";
 
-img {
-  width: 33%;
-  height: auto;
-}
+// Includes
+@import "includes/reset";
+@import "includes/general";
+@import "includes/grid";
+@import "includes/typography";
+@import "includes/utilities";
+@import "includes/print";
+
+// Elements
+@import "elements/buttons";
+@import "elements/code";
+@import "elements/forms";
+@import "elements/lists";
+@import "elements/misc";
+@import "elements/tables";
+
+// Layout
+@import "layout";
+
+// Media Queries
+@import "media-queries/laptop";
+@import "media-queries/tablet";
+@import "media-queries/phablet";
+@import "media-queries/mobile";

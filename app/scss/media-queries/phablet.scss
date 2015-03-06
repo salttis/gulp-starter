@@ -1,0 +1,7 @@
+@media (max-width: 550px) {
+  body:after {
+    display: block;
+    content: 'phablet';
+    text-align: center;
+  }
+}
