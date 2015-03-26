@@ -38,6 +38,7 @@
     "gulp-util": "*",
     "gulp-watch": "*",
     "minimist": "*",
-    "opn": "*"
+    "opn": "*",
+    "standard": "*"
   }
 }

@@ -1,36 +1,133 @@
 @charset "UTF-8";
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
+/*! sanitize.css | CC0 Public Domain | github.com/jonathantneal/sanitize.css */
+/*
+ * Normalization
+ */
+:root {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%; }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+audio:not([controls]) {
+  display: none; }
+
+details {
   display: block; }
 
-body {
-  line-height: 1; }
+input[type="number"] {
+  width: auto; }
+input[type="search"] {
+  -webkit-appearance: textfield; }
+  input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none; }
 
-ol, ul {
+main {
+  display: block; }
+
+summary {
+  display: block; }
+
+pre {
+  overflow: auto; }
+
+progress {
+  display: inline-block; }
+
+small {
+  font-size: 75%; }
+
+template {
+  display: none; }
+
+textarea {
+  overflow: auto; }
+
+[hidden] {
+  display: none; }
+
+[unselectable] {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+
+/*
+ * Universal inheritance
+ */
+*, *::before, *::after {
+  box-sizing: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit; }
+
+* {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  line-height: inherit; }
+
+/*
+ * Opinionated defaults
+ */
+*, *::before, *::after {
+  border-style: solid;
+  border-width: 0; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+:root {
+  box-sizing: border-box;
+  cursor: default;
+  font-family: sans-serif;
+  line-height: 1.5em;
+  text-rendering: optimizeLegibility;
+  vertical-align: top; }
+
+button, input, select, textarea {
+  background: transparent; }
+
+code, kbd, pre, samp {
+  font-family: monospace, monospace; }
+
+input {
+  min-height: 1.5em; }
+
+nav ol, nav ul {
   list-style: none; }
 
-blockquote, q {
-  quotes: none; }
-
-blockquote:before, blockquote:after, q:before, q:after {
-  content: '';
-  content: none; }
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+  select::-ms-expand {
+    display: none; }
+  select::-ms-value {
+    color: currentColor; }
 
 table {
   border-collapse: collapse;
   border-spacing: 0; }
+
+textarea {
+  resize: vertical; }
+
+::-moz-selection {
+  background-color: #B3D4FC;
+  text-shadow: none; }
+
+::selection {
+  background-color: #B3D4FC;
+  text-shadow: none; }
+
+@media screen {
+  [hidden~="screen"] {
+    display: inherit; }
+  [hidden~="screen"]:not(:active):not(:focus):not(:target) {
+    clip: rect(0 0 0 0) !important;
+    position: absolute !important; } }
 
 /* General
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -445,9 +542,13 @@ th:first-child, td:first-child {
 th:last-child, td:last-child {
   padding-right: 0; }
 
+body {
+  background: white url(../img/pipboy.jpg) no-repeat 50% 60px;
+  background-size: 250px; }
+
 h1 {
-  margin: 15rem 0 13rem;
-  text-align: center; }
+  padding: 15rem 0 13rem;
+  text-indent: -9999px; }
 
 .jargon {
   margin: 0 15%; }
