@@ -30,7 +30,7 @@
     "gulp-if-else": "*",
     "gulp-imagemin": "*",
     "gulp-livereload": "*",
-    "gulp-minify-css": "*",
+    "gulp-clean-css": "*",
     "gulp-minify-html": "*",
     "gulp-sass": "*",
     "gulp-uglify": "*",

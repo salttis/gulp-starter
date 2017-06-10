@@ -7,3 +7,4 @@ npm-debug.log
 public/
 node_modules/
 app/lib/
+app/css/
